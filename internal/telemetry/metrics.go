@@ -139,8 +139,9 @@ func SubConnection(n string, c ConnType) {
 func RegisterAllocationMetric(log logging.LeveledLogger, GetAllocationCount func() float64) {
 	AllocActiveGauge = prometheus.NewGaugeFunc(
 		prometheus.GaugeOpts{
-			Name: "stunner_allocations_active",
-			Help: "Number of active allocations.",
+			Namespace: stunnerNamespace,
+			Name:      "allocations_active",
+			Help:      "Number of active allocations.",
 		},
 		GetAllocationCount,
 	)
